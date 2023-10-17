@@ -6,10 +6,19 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Barre extends Sprite{
+
+
     private int largeur = 60;
     private int hauteur = 10;
     private int vitesse = 15;
 
+    public int getLargeur() {
+        return largeur;
+    }
+
+    public int getHauteur() {
+        return hauteur;
+    }
 
     public Barre(){
         setPosX(350);

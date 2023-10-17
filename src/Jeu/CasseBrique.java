@@ -67,22 +67,35 @@ public class CasseBrique extends Canvas {
 
             }
         });
+        int j = 0;
+        JOptionPane.showMessageDialog(null,
+                "5 vies",
+                "Info",
+                JOptionPane.INFORMATION_MESSAGE);
 
-        while(true) {
-
+        while(j<4) {
             Graphics2D dessin = (Graphics2D) getBufferStrategy().getDrawGraphics();
             //---------------------------------------------------------------------------------------------------------
             dessin.setColor(Color.white);
-            dessin.fillRect(0,0,largeur,hauteur);
+            dessin.fillRect(0, 0, largeur, hauteur);
             balle.dessiner(dessin);
             balle.deplacement();
-            balle.colision(largeur,hauteur);
+            balle.colision(largeur, hauteur);
             barre.dessiner(dessin);
-
-            //---------------------------------------------------------------------------------------------------------
+            if ((balle.getPosY() + balle.getDiam() >= barre.getPosY()) && (balle.getPosX() >= barre.getPosX()) && (balle.getPosX() <= barre.getPosX() + barre.getLargeur())) {
+                balle.setVitVertical(-balle.getVitVertical());
+            }
+            if (balle.getPosY() >= hauteur - balle.getDiam()) {
+                JOptionPane.showMessageDialog(null,
+                        "perdu! nombre de vie retantes : "+(4-j),
+                        "Info", JOptionPane.INFORMATION_MESSAGE);
+                j++;
+            }
             dessin.dispose();
             getBufferStrategy().show();
             Thread.sleep(1000 / 60);
         }
+
+            //---------------------------------------------------------------------------------------------------------
     }
 }
