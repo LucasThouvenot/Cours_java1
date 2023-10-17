@@ -90,6 +90,8 @@ public class CasseBrique extends Canvas {
                         "perdu! nombre de vie retantes : "+(4-j),
                         "Info", JOptionPane.INFORMATION_MESSAGE);
                 j++;
+                balle.setPosX(50);
+                balle.setPosY(50);
             }
             dessin.dispose();
             getBufferStrategy().show();
