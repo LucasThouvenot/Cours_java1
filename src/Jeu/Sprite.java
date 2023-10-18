@@ -2,7 +2,7 @@ package Jeu;
 
 import java.awt.*;
 
-public class Sprite {
+public abstract class Sprite {
 
 
     protected int posX;
@@ -26,7 +26,7 @@ public class Sprite {
     }
 
     public void dessiner(Graphics2D dessin) {
-        dessin.setColor(this.color);
+        dessin.setColor(color);
     }
 
 
