@@ -146,8 +146,16 @@ public class CasseBrique extends Canvas {
             dessin.dispose();
             getBufferStrategy().show();
             Thread.sleep(1000 / 60);
+            if(briques.isEmpty()){
+                break;
+            }
         }
-        JOptionPane.showMessageDialog(null, "perdu!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        if(briques.isEmpty()){
+            JOptionPane.showMessageDialog(null, "gagner!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null, "perdu!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        }
+
 
 
             //---------------------------------------------------------------------------------------------------------
