@@ -28,6 +28,9 @@ public class Balle extends Rond{
         Random random = new Random();
         posX = random.nextInt(400) + diam ;
         posY = 200;
+        if(random.nextInt(2)+1==1){
+             vitHorizontal = -vitHorizontal;
+        }
         diam = 30;
         color = Color.BLUE;
     }

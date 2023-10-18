@@ -23,4 +23,18 @@ public class Bonus extends Rond{
             return false;
         }
     }
+    public boolean collisionAvecBarre(Barre barre) {
+        int bonusX = getPosX();
+        int bonusY = getPosY();
+        int barreX = barre.getPosX();
+        int barreY = barre.getPosY();
+        int barreLargeur = barre.getLargeur();
+        int barreHauteur = barre.getHauteur();
+
+        // Vérifie si le bonus touche la barre
+        return (bonusY + diam >= barreY &&
+                bonusY <= barreY + barreHauteur &&
+                bonusX + diam >= barreX &&
+                bonusX <= barreX + barreLargeur);
+    }
 }

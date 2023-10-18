@@ -48,8 +48,7 @@ public class CasseBrique extends Canvas {
         int i = 5;
         Balle balle = new Balle();
         Barre barre = new Barre();
-        Brique brique = new Brique(30,30);
-//        Bonus bonus = new Bonus(300,300);
+        Score score = new Score();
 
         ArrayList<Vie> vies = new ArrayList<>();
         for(int a=0;a<i;a++){
@@ -100,17 +99,9 @@ public class CasseBrique extends Canvas {
 
         while(!vies.isEmpty()) {
             Graphics2D dessin = (Graphics2D) getBufferStrategy().getDrawGraphics();
-//            dessin.setColor(Color.black);
-//            dessin.setFont(new Font("Arial", Font.BOLD, 20));
-//            dessin.drawString("Vies : " + (4-j), largeur - 100, 20);
-
-
             //---------------------------------------------------------------------------------------------------------
             dessin.setColor(Color.white);
             dessin.fillRect(0, 0, largeur, hauteur);
-            balle.dessiner(dessin);
-            balle.deplacement();
-            balle.colision(largeur, hauteur);
             barre.dessiner(dessin);
             for(Brique labrique: briques){
                 labrique.dessiner(dessin);
@@ -118,6 +109,9 @@ public class CasseBrique extends Canvas {
             for (Vie lavie:vies) {
                 lavie.dessiner(dessin);
             }
+            balle.dessiner(dessin);
+            balle.deplacement();
+            balle.colision(largeur, hauteur);
             if ((balle.getPosY() + balle.getDiam() >= barre.getPosY()) && (balle.getPosX() >= barre.getPosX()) && (balle.getPosX() <= barre.getPosX() + barre.getLargeur())) {
                 balle.setVitVertical(-balle.getVitVertical());
             }
@@ -127,6 +121,7 @@ public class CasseBrique extends Canvas {
                     if (random.nextInt(5) + 1 == 1) {
                         lesbonus.add(new Bonus(briques.get(k).getPosX(), briques.get(k).getPosY()));
                     }
+                    score.briqueCasse();
                     briques.remove(k);
                     k--;
                     balle.setVitVertical(-balle.getVitVertical());
@@ -143,6 +138,15 @@ public class CasseBrique extends Canvas {
                 lebonus.deplacement();
                 lebonus.colision(largeur,hauteur);
             }
+            for (Bonus lebonus : lesbonus) {
+                // Vérifiez la collision entre le bonus et la barre
+                if (lebonus.collisionAvecBarre(barre)) {
+                    score.bonusRamasse();
+                    lesbonus.remove(lebonus);
+                    break;
+                }
+            }
+            score.dessiner(dessin);
             dessin.dispose();
             getBufferStrategy().show();
             Thread.sleep(1000 / 60);
@@ -150,6 +154,7 @@ public class CasseBrique extends Canvas {
                 break;
             }
         }
+        score.resetScore();
         if(briques.isEmpty()){
             JOptionPane.showMessageDialog(null, "gagner!", "Info", JOptionPane.INFORMATION_MESSAGE);
         }else{

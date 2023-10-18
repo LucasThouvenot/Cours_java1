@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 
 public class Barre extends Rectangle{
 
-    private int vitesse = 25;
+    private int vitesse = 30;
 
 
 
