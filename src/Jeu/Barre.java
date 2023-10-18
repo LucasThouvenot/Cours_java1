@@ -5,24 +5,17 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Barre extends Sprite{
+public class Barre extends Rectangle{
+
+    private int vitesse = 25;
 
 
-    private int largeur = 60;
-    private int hauteur = 10;
-    private int vitesse = 15;
-
-    public int getLargeur() {
-        return largeur;
-    }
-
-    public int getHauteur() {
-        return hauteur;
-    }
 
     public Barre(){
-        setPosX(350);
-        setPosY(450);
+        posX=350;
+        posY=750;
+        largeur = 60;
+        hauteur = 10;
         color = Color.red;
     }
     public void moveLeft(){
@@ -40,6 +33,6 @@ public class Barre extends Sprite{
     @Override
     public void dessiner(Graphics2D dessin) {
         dessin.setColor(this.color);
-        dessin.fillRect(super.posX, super.posY, largeur, hauteur);
+        dessin.fillRect(posX, posY, largeur, hauteur);
     }
 }

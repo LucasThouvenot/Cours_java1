@@ -2,7 +2,8 @@ package Jeu;
 
 import javax.swing.*;
 import java.awt.*;
-public class Balle extends Sprite{
+import java.util.Random;
+public class Balle extends Rond{
 
     public int getVitHorizontal() {
         return vitHorizontal;
@@ -20,19 +21,15 @@ public class Balle extends Sprite{
         this.vitVertical = vitVertical;
     }
 
-    private int vitHorizontal = 7;
-    private int vitVertical = 9;
-
-    private int diam = 30;
-
-    public int getDiam() {
-        return diam;
-    }
+    private int vitHorizontal = 5;
+    private int vitVertical = 6;
 
     public Balle(){
-        setPosX(50);
-        setPosY(50);
-        color = Color.blue;
+        Random random = new Random();
+        posX = random.nextInt(400) + diam ;
+        posY = 200;
+        diam = 30;
+        color = Color.BLUE;
     }
 
     public void deplacement(){
